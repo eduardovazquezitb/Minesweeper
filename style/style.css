@@ -1,0 +1,63 @@
+.minesweeper{
+    margin: auto;
+    border: solid black 1px;
+    padding: 0px 0px 0px 0px;
+}
+
+.minesweeper *{
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+}
+
+.minesweeper td{
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    width: 24px;
+    height: 24px;
+    background-image: url('../img/sprite.png');
+    background-position-x: left 0px;
+}
+
+.minesweeper .mine{
+    background-position-x: left 24px;
+}
+
+.minesweeper .eight{
+    background-position-x: left 48px;
+}
+
+.minesweeper .seven{
+    background-position-x: left 72px;
+}
+
+.minesweeper .six{
+    background-position-x: left 96px;
+}
+
+.minesweeper .five{
+    background-position-x: left 120px;
+}
+
+.minesweeper .four{
+    background-position-x: left 144px;
+}
+
+.minesweeper .three{
+    background-position-x: left 168px;
+}
+
+.minesweeper .two{
+    background-position-x: left 192px;
+}
+
+.minesweeper .one{
+    background-position-x: left 216px;
+}
+
+.minesweeper .zero{
+    background-position-x: left 240px;
+}
+
+.minesweeper td:hover{
+    cursor: pointer;
+}
