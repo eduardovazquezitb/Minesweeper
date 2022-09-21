@@ -12,6 +12,7 @@ window.addEventListener('DOMContentLoaded', () => {
     loadURLParameters(URLParameters);
     createDOMTable(gameData.height, gameData.width);
     connectOnClickEvents(gameData);
+    updateUI(gameData);
 });
 
 function loadURLParameters(URLParameters)

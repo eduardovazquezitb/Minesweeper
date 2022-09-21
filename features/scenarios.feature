@@ -29,7 +29,6 @@ Given the user loads the custom layout 'xo'
 When the user reveals the cell '1-2'
 Then the user has won the game
 
-@manual
 Scenario: Winning by default
 Given the user loads the custom layout 'x'
 Then the user has won the game
