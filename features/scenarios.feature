@@ -24,7 +24,6 @@ Given the user loads the custom layout 'xo'
 When the user reveals the cell '1-1'
 Then the user has lost the game
 
-@manual
 Scenario: Revealing all free cells: victory
 Given the user loads the custom layout 'xo'
 When the user reveals the cell '1-2'

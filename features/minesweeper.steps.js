@@ -24,3 +24,7 @@ When('the user reveals the cell {string}', async (string) => {
 Then('the user has lost the game', async () => {
     await expect(page).toHaveTitle('Game Over');
 });
+
+Then('the user has won the game', async () => {
+    await expect(page).toHaveTitle('Victory');
+});

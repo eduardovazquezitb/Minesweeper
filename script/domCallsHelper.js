@@ -17,15 +17,14 @@ function createDOMTable(height, width)
     }
 }
 
-function showValue(position, matrix)
+function revealCell(position, gameData)
 {
     let cellId = 'cell-' +position.y+ '-' +position.x;
     let cell = document.getElementById(cellId);
     let cellClass = '';
-    switch(matrix[position.y][position.x])
+    switch(gameData.layout[position.y][position.x])
     {
         case -1:
-            document.title = "Game Over";
             cellClass = 'mine';
             break;
         case 0:
@@ -57,16 +56,19 @@ function showValue(position, matrix)
             break;
     }
     cell.classList.add(cellClass);
-    cell.setAttribute('test-value', matrix[position.y][position.x]);
+    cell.setAttribute('test-value', gameData.layout[position.y][position.x]);
+    gameData.visible[position.y][position.x] = true;
+    updateUI(gameData);
+    cell.onclick = function () {};
 }
 
-function connectOnClickEvents(height, width, matrix)
+function connectOnClickEvents(gameData)
 {
-    for(let i = 0; i<height; i++) for(let j =0; j<width; j++)
+    for(let i = 0; i<gameData.height; i++) for(let j =0; j<gameData.width; j++)
     {
         let cellId = 'cell-' +i+ '-' +j;
         let cell = document.getElementById(cellId);
         let position = {'x':j, 'y':i};
-        cell.onclick = showValue.bind(cell, position, matrix);
+        cell.onclick = revealCell.bind(cell, position, gameData);
     }
 }

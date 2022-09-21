@@ -1,46 +1,56 @@
-let layout = [];
-let maxHeight = 8;
-let maxWidth = 8;
-let totalMines = 10;
+let gameData = {
+    layout: [],
+    visible: [],
+    height: 8,
+    width: 8,
+    mines: 10,
+    state: 'beforeStart'
+}
 
 window.addEventListener('DOMContentLoaded', () => {
     let URLParameters = getURLParameters();
     loadURLParameters(URLParameters);
-    createDOMTable(maxHeight, maxWidth);
-    connectOnClickEvents(maxHeight, maxWidth, layout);
+    createDOMTable(gameData.height, gameData.width);
+    connectOnClickEvents(gameData);
 });
 
 function loadURLParameters(URLParameters)
 {
     if("x" in URLParameters)
-        maxWidth = URLParameters.x;
+        gameData.width = URLParameters.x;
     if("y" in URLParameters)
-        maxHeight = URLParameters.y;
+        gameData.height = URLParameters.y;
     if("layout" in URLParameters)
-        layout = loadCustomLayout(URLParameters.layout);
+        gameData = loadCustomLayout(URLParameters.layout);
 }
 
 function loadCustomLayout(customLayout)
 {
+    let inputGameData = {};
     let layoutSplit = customLayout.split('-');
-    maxHeight = layoutSplit.length;
-    maxWidth = layoutSplit[0].length;
-    totalMines = 0;
-    let matrix = [];
-    for(let i = 0; i<maxHeight; i++)
+    inputGameData.height = layoutSplit.length;
+    inputGameData.width = layoutSplit[0].length;
+    inputGameData.mines = 0;
+    inputGameData.state = 'beforeStart';
+    inputGameData.layout = [];
+    inputGameData.visible = [];
+    for(let i = 0; i<inputGameData.height; i++)
     {
         let row = [];
-        for(let j = 0; j<maxWidth; j++)
+        let visibleRow = [];
+        for(let j = 0; j<inputGameData.width; j++)
         {
             let number = 0;
             if(layoutSplit[i][j] == 'x') 
             {
                 number = -1;
-                totalMines++;
+                inputGameData.mines++;
             }
             row.push(number);
+            visibleRow.push(false);
         }
-        matrix.push(row);
+        inputGameData.layout.push(row);
+        inputGameData.visible.push(visibleRow);
     }
-    return matrix;
+    return inputGameData;
 }
