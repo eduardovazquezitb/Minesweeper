@@ -76,7 +76,8 @@ Then('the user has won the game', async () => {
 
 Then('the display shows the layout', async (docString) => {
     let display = await readDisplay();
-    display = display.replace('-', '\n');
+    const regEx = new RegExp('-', "g");
+    display = display.replace(regEx, '\n');
     expect(display).toBe(docString);
 });
 

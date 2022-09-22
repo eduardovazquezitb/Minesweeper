@@ -62,6 +62,17 @@ function revealCell(position, gameData)
     gameData.visible[position.y][position.x] = true;
     updateUI(gameData);
     cell.onclick = function () {};
+
+    if(cellClass == 'zero')
+    {
+        let neighbours = getAdjacentCells(position.y, position.x, gameData)
+        for(let k = 0; k<neighbours.length; k++)
+        {
+            let neighbourId = 'cell-' +neighbours[k].row+ '-' +neighbours[k].column;
+            let neighbour = document.getElementById(neighbourId);
+            neighbour.click();
+        }
+    }
 }
 
 function connectOnClickEvents(gameData)
@@ -78,7 +89,8 @@ function connectOnClickEvents(gameData)
 function submitLayout(gameData)
 {
     var textarea = document.getElementById('layout-data');
-    gameData = loadCustomLayout(textarea.value.replace('\n','-'));
+    const regEx = new RegExp('\n', "g");
+    gameData = loadCustomLayout(textarea.value.replace(regEx,'-'));
     document.getElementById('popup').remove();
     EmptyTable();
     createDOMTable(gameData.height, gameData.width);

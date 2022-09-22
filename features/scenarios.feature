@@ -65,7 +65,6 @@ Examples:
 | oxx-xox-xxx | 1-1  |  2··-···-··· |
 | oxx-xxx-xxx | 1-1  |  3··-···-··· |
 
-@manual
 Scenario: Revealing a cell with 0 count: recursively revealing neighbours
 Given the user loads the custom layout
 """
