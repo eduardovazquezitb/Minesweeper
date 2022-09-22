@@ -61,3 +61,21 @@
 .minesweeper td:hover{
     cursor: pointer;
 }
+
+.popup{
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    border: black solid;
+    background-color: #fff;
+    border-radius: 6px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 0 30px 30px;
+}
+
+.popup button{
+    margin-top: 10px;
+}

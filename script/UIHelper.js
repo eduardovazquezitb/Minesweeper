@@ -1,7 +1,5 @@
 function updateUI(gameData)
 {
-    console.log("henlo fiend");
-    console.log(gameData);
     var visibleMines = 0;
     var visibleCells = 0;
     for(let i = 0; i<gameData.height; i++) for(let j = 0; j<gameData.width; j++)
@@ -24,5 +22,9 @@ function updateUI(gameData)
     {
         document.title = 'Victory';
         gameData.state = 'Victory';
+    }
+    else
+    {
+        document.title = 'Minesweeper';
     }
 }

@@ -33,9 +33,8 @@ Scenario: Winning by default
 Given the user loads the custom layout 'x'
 Then the user has won the game
 
-@manual
 Scenario: Revealing a cell with a bomb
-Given the user loads the custom layout //Implementation Problems?
+Given the user loads the custom layout
 """
 xo
 oo

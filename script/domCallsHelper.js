@@ -56,7 +56,9 @@ function revealCell(position, gameData)
             break;
     }
     cell.classList.add(cellClass);
-    cell.setAttribute('test-value', gameData.layout[position.y][position.x]);
+    let testValue = gameData.layout[position.y][position.x].toString();
+    if(testValue == '-1') testValue = 'mine';
+    cell.setAttribute('test-value', testValue);
     gameData.visible[position.y][position.x] = true;
     updateUI(gameData);
     cell.onclick = function () {};
@@ -71,4 +73,24 @@ function connectOnClickEvents(gameData)
         let position = {'x':j, 'y':i};
         cell.onclick = revealCell.bind(cell, position, gameData);
     }
+}
+
+function submitLayout(gameData)
+{
+    var textarea = document.getElementById('layout-data');
+    gameData = loadCustomLayout(textarea.value.replace('\n','-'));
+    document.getElementById('popup').remove();
+    EmptyTable();
+    createDOMTable(gameData.height, gameData.width);
+    connectOnClickEvents(gameData);
+    updateUI(gameData);
+}
+
+function EmptyTable()
+{
+    document.getElementById('table').remove();
+    var table = document.createElement('table');
+    table.setAttribute('id', 'table');
+    table.classList.add('minesweeper');
+    document.body.appendChild(table);
 }
