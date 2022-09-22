@@ -79,3 +79,8 @@ Then('the display shows the layout', async (docString) => {
     display = display.replace('-', '\n');
     expect(display).toBe(docString);
 });
+
+Then('the display shows the layout {string}', async (string) => {
+    let display = await readDisplay();
+    expect(display).toBe(string);
+});

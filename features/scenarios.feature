@@ -46,7 +46,6 @@ x·
 ··
 """
 
-@manual
 Scenario Outline: Revealing a cell without a bomb: showing neighbour bomb count
 Given the user loads the custom layout "<layoutInput>"
 When the user reveals the cell "<cell>"

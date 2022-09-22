@@ -82,6 +82,7 @@ function submitLayout(gameData)
     document.getElementById('popup').remove();
     EmptyTable();
     createDOMTable(gameData.height, gameData.width);
+    countBombs(gameData);
     connectOnClickEvents(gameData);
     updateUI(gameData);
 }

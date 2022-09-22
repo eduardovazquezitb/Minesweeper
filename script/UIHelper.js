@@ -6,7 +6,6 @@ function updateUI(gameData)
     {
         if(gameData.visible[i][j]) 
         {
-            console.log('cell-'+i+'-'+j+' is VISIBLE AAAH');
             visibleCells++;
             if(gameData.layout[i][j] == -1)
                 visibleMines++;
