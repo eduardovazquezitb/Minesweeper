@@ -95,6 +95,19 @@ When('the user tags the cell {string} with {string}', async (string, string2) =>
         await page.click('id=' + cellId, { button: 'right' });
 });
 
+When('the user untags the cell {string}', async (string) => {
+    let cellId = getCellId(string);
+    const cell = await page.locator('id=' + cellId);
+    const state = await cell.getAttribute('test-value');
+    if(state == 'question')
+        await page.click('id=' + cellId, { button: 'right' });
+    if(state == 'flag')
+    {
+        await page.click('id=' + cellId, { button: 'right' });
+        await page.click('id=' + cellId, { button: 'right' });
+    }
+});
+
 Then('the user has lost the game', async () => {
     await expect(page).toHaveTitle('Game Over');
 });

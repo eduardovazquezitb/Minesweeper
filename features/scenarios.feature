@@ -92,17 +92,16 @@ Given the user loads the default layout
 When the user tags the cell "1-1" with "a question mark"
 Then the cell "1-1" shows "a question mark"
 
-@manual
 Scenario: Untagging a cell with a flag
 Given the user loads the default layout
-And the user tags the cell "1-1" with a flag
+And the user tags the cell "1-1" with "a flag"
 When the user untags the cell "1-1"
 Then the cell "1-1" shows "nothing"
 
 @manual
 Scenario: Untagging a cell with a question mark
 Given the user loads the default layout
-And the user tags the cell "1-1" with a question mark
+And the user tags the cell "1-1" with "a question mark"
 When the user untags the cell "1-1"
 Then the cell "1-1" shows "nothing"
 
@@ -165,7 +164,7 @@ Then the smiley shows 'a neutral face'
 @manual
 Scenario: Resetting the board: hiding all cells
 Given the user loads the default layout
-And the user tags the cell "3-4" with a flag
+And the user tags the cell "3-4" with "a flag"
 And the user reveals the cell "5-2"
 When the user reset the board
 Then all cells are hidden
@@ -173,8 +172,8 @@ Then all cells are hidden
 @manual
 Scenario: Resetting the board: resetting the remaining flags counter
 Given the user loads the default layout
-And the user tags the cell "3-4" with a flag
-And the user tags the cell "5-2" with a flag
+And the user tags the cell "3-4" with "a flag"
+And the user tags the cell "5-2" with "a flag"
 When the user reset the board
 Then the remaining flags counter shows the value "10"
 
@@ -189,38 +188,38 @@ Then the timer shows the value "0"
 @manual
 Scenario: Tagging a cell with a flag: remaining flags counter goes down
 Given the user loads the default layout
-When the user tags the cell "1-1" with a flag
+When the user tags the cell "1-1" with "a flag"
 Then the remaining flags counter shows the value "9"
 
 @manual
 Scenario: Untagging a cell with a flag: remaining flags counter goes up
 Given the user loads the default layout
-And the user tags the cell "1-1" with a flag
+And the user tags the cell "1-1" with "a flag"
 When the user untags the cell "1-1"
 Then the remaining flags counter shows the value "10"
 
 @manual
 Scenario: Tagging a cell with a question mark: remaining flags counter does not change
 Given the user loads the default layout
-When the user tags the cell "1-1" with a question mark
+When the user tags the cell "1-1" with "a question mark"
 Then the remaining flags counter shows the value "10"
 
 @manual
 Scenario: Incorrectly tagging a cell with a flag: remaining flags counter goes down
 Given the user loads the custom layout "xo"
-When the user tags the cell "1-2" with a flag
+When the user tags the cell "1-2" with "a flag"
 Then the remaining flags counter shows the value "1"
 
 @manual
 Scenario: Correctly tagging a cell with a flag: game does not end
 Given the user loads the custom layout "xo"
-When the user tags the cell "1-1" with a flag
+When the user tags the cell "1-1" with "a flag"
 Then the user has neither lost or won
 
 @manual
 Scenario: Tagging a cell with a flag: using more flags than bombs
 Given the user loads the layout "xo"
-When the user tags all cells with a flag
+When the user tags all cells with "a flag"
 Then the remaining flags counter shows the value "1"
 
 @manual
@@ -266,7 +265,7 @@ Then the cell "1-1" shows "nothing"
 @manual
 Scenario: Using the mouse: Pressing the smiley to reset
 Given the user loads the default layout
-And the user tags the cell "3-4" with a flag
+And the user tags the cell "3-4" with "a flag"
 And the user reveals the cell "5-2"
 When the user presses the smiley
 Then the board resets
