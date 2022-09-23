@@ -88,9 +88,11 @@ When('the user reveals the cell {string}', async (string) => {
     await page.click('id=' + cellId);
 });
 
-When('the user tags the cell {string} with a flag', async (string) => {
+When('the user tags the cell {string} with {string}', async (string, string2) => {
     let cellId = getCellId(string);
     await page.click('id=' + cellId, { button: 'right' });
+    if(string2 == 'a question mark')
+        await page.click('id=' + cellId, { button: 'right' });
 });
 
 Then('the user has lost the game', async () => {

@@ -84,13 +84,12 @@ Then the display shows the layout
 
 Scenario: Tagging a cell with a flag
 Given the user loads the default layout
-When the user tags the cell "1-1" with a flag
+When the user tags the cell "1-1" with "a flag"
 Then the cell "1-1" shows "a flag"
 
-@manual
 Scenario: Tagging a cell with a question mark
-Given the user loads the the default layout
-When the user tags the cell "1-1" with a question mark
+Given the user loads the default layout
+When the user tags the cell "1-1" with "a question mark"
 Then the cell "1-1" shows "a question mark"
 
 @manual
