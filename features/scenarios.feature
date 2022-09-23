@@ -98,7 +98,6 @@ And the user tags the cell "1-1" with "a flag"
 When the user untags the cell "1-1"
 Then the cell "1-1" shows "nothing"
 
-@manual
 Scenario: Untagging a cell with a question mark
 Given the user loads the default layout
 And the user tags the cell "1-1" with "a question mark"
