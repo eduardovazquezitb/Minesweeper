@@ -21,13 +21,31 @@ async function readDimensions()
     return {"height":height, "width": width};
 }
 
-function translateValue(value)
+function translateTestValueToMapRepresentation(value)
 {
     switch(value){
         case "hidden":
             return '·';
         case "mine":
             return 'x';
+        case "flag":
+            return '!';
+        case "question":
+            return '?';
+        default:
+            return value;
+    }
+}
+
+function translateStringToTestValue(value)
+{
+    switch(value){
+        case "nothing":
+            return 'hidden';
+        case "a flag":
+            return 'flag';
+        case "a question mark":
+            return 'question';
         default:
             return value;
     }
@@ -43,13 +61,17 @@ async function readDisplay()
         {
             const cellij = await page.locator('id=cell-' + i + '-' + j);
             let value = await cellij.getAttribute('test-value');
-            display += translateValue(value);
+            display += translateTestValueToMapRepresentation(value);
         }
         if(i!=dimensions.height-1) 
             display+='-';
     }
     return display;
 }
+
+Given('the user loads the default layout', async () => {
+   await page.goto(url);
+});
 
 Given('the user loads the custom layout {string}', async (string) => {
     await page.goto(url + '?layout=' + string);
@@ -64,6 +86,11 @@ Given('the user loads the custom layout', async (docString) => {
 When('the user reveals the cell {string}', async (string) => {
     let cellId = getCellId(string);
     await page.click('id=' + cellId);
+});
+
+When('the user tags the cell {string} with a flag', async (string) => {
+    let cellId = getCellId(string);
+    await page.click('id=' + cellId, { button: 'right' });
 });
 
 Then('the user has lost the game', async () => {
@@ -85,3 +112,12 @@ Then('the display shows the layout {string}', async (string) => {
     let display = await readDisplay();
     expect(display).toBe(string);
 });
+
+Then('the cell {string} shows {string}', async (string, string2) => {
+
+    let cellId = getCellId(string);
+    const cell = await page.locator('id=' + cellId);
+    let value = await cell.getAttribute('test-value');
+    expect(value).toBe(translateStringToTestValue(string2));
+});
+

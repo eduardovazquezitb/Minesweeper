@@ -82,7 +82,6 @@ Then the display shows the layout
 0000
 """
 
-@manual
 Scenario: Tagging a cell with a flag
 Given the user loads the default layout
 When the user tags the cell "1-1" with a flag

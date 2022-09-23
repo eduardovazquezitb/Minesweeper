@@ -61,6 +61,14 @@ function revealCell(position, gameData)
         revealNeighbourCells(position, gameData);
 }
 
+function tagCell(position, gameData)
+{
+    if(!gameData.visible[position.row][position.column]){
+        let cell = getCellObject(position.row, position.column);
+        modifyCellTag(cell);
+    }
+}
+
 function revealNeighbourCells(position, gameData)
 {
     let neighbours = getAdjacentCells(position.row, position.column, gameData)

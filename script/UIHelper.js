@@ -28,6 +28,20 @@ function updateUI(gameData)
     }
 }
 
+function modifyCellTag(cell)
+{
+    let classes = ["hidden", "flag", "question"];
+    let cellClassIndex = -1;
+    for(let i =0 ; cellClassIndex == -1 && i<3; i++)
+        if(cell.classList.contains(classes[i]))
+            cellClassIndex = i;
+    cellClassIndex = (cellClassIndex+1)%3;
+
+    cell.removeAttribute('class');
+    cell.classList.add(classes[cellClassIndex]);
+    cell.setAttribute('test-value', classes[cellClassIndex]);
+}
+
 function showCellValue(cell, cellValue)
 {
     cell.removeAttribute('class');

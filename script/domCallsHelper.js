@@ -35,6 +35,7 @@ function connectOnClickEvents(gameData)
         let cell = getCellObject(i, j);
         let position = {'row':i, 'column':j};
         cell.onclick = revealCell.bind(cell, position, gameData);
+        cell.oncontextmenu = function(event) {event.preventDefault(); tagCell(position, gameData);}
     }
 }
 
