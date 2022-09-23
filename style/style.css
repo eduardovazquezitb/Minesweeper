@@ -14,48 +14,60 @@
     margin: 0px 0px 0px 0px;
     width: 24px;
     height: 24px;
-    background-image: url('../img/sprite.png');
-    background-position-x: left 0px;
+    background-image: url('../img/hidden.png');
+    background-size: cover;
+}
+
+.minesweeper .hidden{
+    background-image: url('../img/hidden.png');
+}
+
+.minesweeper .flag{
+    background-image: url('../img/flag.png');
+}
+
+.minesweeper .question{
+    background-image: url('../img/question.png');
 }
 
 .minesweeper .mine{
-    background-position-x: left 24px;
+    background-image: url('../img/mine.png');
 }
 
 .minesweeper .eight{
-    background-position-x: left 48px;
+    background-image: url('../img/8.png');
 }
 
 .minesweeper .seven{
-    background-position-x: left 72px;
+    background-image: url('../img/7.png');
 }
 
 .minesweeper .six{
-    background-position-x: left 96px;
+    background-image: url('../img/6.png');
 }
 
 .minesweeper .five{
-    background-position-x: left 120px;
+    background-image: url('../img/5.png');
 }
 
 .minesweeper .four{
-    background-position-x: left 144px;
+    background-image: url('../img/4.png');
 }
 
 .minesweeper .three{
-    background-position-x: left 168px;
+    background-image: url('../img/3.png');
 }
 
 .minesweeper .two{
-    background-position-x: left 192px;
+    background-image: url('../img/2.png');
 }
 
 .minesweeper .one{
-    background-position-x: left 216px;
+    background-image: url('../img/1.png');
 }
 
 .minesweeper .zero{
-    background-position-x: left 240px;
+    background-image: url('../img/blank.png');
 }
 
 .minesweeper td:hover{

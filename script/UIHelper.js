@@ -27,3 +27,20 @@ function updateUI(gameData)
         document.title = 'Minesweeper';
     }
 }
+
+function showCellValue(cell, cellValue)
+{
+    cell.removeAttribute('class');
+    let cellClass = translateCellValueToClass(cellValue);
+    cell.classList.add(cellClass);
+    let testValue = cellValue.toString();
+    if(testValue == '-1') 
+        testValue = 'mine';
+    cell.setAttribute('test-value', testValue);
+}
+
+function translateCellValueToClass(cellValue)
+{
+    let className = ['mine', 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'];
+    return className[cellValue+1];
+}

@@ -13,7 +13,7 @@ function getURLParameters()
 
 function loadURLParameters(URLParameters, gameData)
 {
-    inputGameData = {
+    gameData = {
         layout: [],
         visible: [],
         height: 8,
@@ -21,15 +21,23 @@ function loadURLParameters(URLParameters, gameData)
         mines: 10,
         state: 'beforeStart'
     }
+
     if("x" in URLParameters)
-        inputGameData.width = URLParameters.x;
+        gameData.width = URLParameters.x;
     if("y" in URLParameters)
-        inputGameData.height = URLParameters.y;
+        gameData.height = URLParameters.y;
+    if("mines" in URLParameters)
+        gameData.mines = URLParameters.mines;
+
     if("layout" in URLParameters)
-        inputGameData = loadCustomLayout(URLParameters.layout);
+        gameData = loadCustomLayout(URLParameters.layout);
+    else
+        gameData = loadDefaultLayout(gameData);
+    
     if("mockup" in URLParameters)
         createPopUp(gameData); 
-    return inputGameData;
+
+    return gameData;
 }
 
 function loadCustomLayout(customLayout)
@@ -63,27 +71,28 @@ function loadCustomLayout(customLayout)
     return inputGameData;
 }
 
-function createPopUp(gameData)
+function loadDefaultLayout(gameData)
 {
-    var popup = document.createElement('div');
-    popup.classList.add('popup');
-    popup.setAttribute('id', 'popup');
+    if(gameData.mines > gameData.width * gameData.height)
+        gameData.mines = gameData.width * gameData.height;
 
-    var paragraph = document.createElement('p');
-    paragraph.innerText = 'mockup data';
-    
-    var textarea = document.createElement('textarea');
-    textarea.setAttribute('id','layout-data');
-    textarea.setAttribute('rows', 7);
-    
-    var button = document.createElement('button');
-    button.setAttribute('id', 'mockup-button')
-    button.innerText = 'submit layout';
-    button.onclick = submitLayout.bind(button, gameData);
+    gameData.layout = new Array(gameData.height).fill(0).map(() => new Array(gameData.width).fill(0));
+    gameData.visible = new Array(gameData.height).fill(0).map(() => new Array(gameData.width).fill(false));
 
-    popup.appendChild(paragraph);
-    popup.appendChild(textarea);
-    popup.appendChild(button);
+    for(let i = 0; i < gameData.mines; i++)
+    {
+        position = getMineFreePosition(gameData.layout, gameData.height, gameData.width);
+        gameData.layout[position.row][position.column] = -1;
+    }
+    return gameData;
+}
 
-    document.body.appendChild(popup);
+function getMineFreePosition(layout, height, width)
+{
+    let row, column;
+    do{
+        row = Math.floor(Math.random()*height);
+        column = Math.floor(Math.random()*width);
+    } while(layout[row][column] == -1);
+    return {"row":row, "column":column};
 }
