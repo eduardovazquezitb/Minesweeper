@@ -62,6 +62,8 @@ function revealCell(position, currentGameData)
     cell.onclick = function () {};
     if(cellValue == 0)
         revealNeighbourCells(position, currentGameData);
+    if(cellValue == -1)
+        revealAllMines(currentGameData);
 }
 
 function tagCell(position, currentGameData)

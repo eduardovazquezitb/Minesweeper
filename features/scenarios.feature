@@ -112,7 +112,6 @@ Scenario: Losing the game: sad face
 Given the user loses the game
 Then the smiley shows 'a sad face'
 
-@manual
 Scenario: Losing the game: showing all bombs locations
 Given the user loads the custom layout 
 """

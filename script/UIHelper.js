@@ -59,3 +59,13 @@ function translateCellValueToClass(cellValue)
     let className = ['mine', 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'];
     return className[cellValue+1];
 }
+
+function revealAllMines(gameData)
+{
+    for(let i =0; i<gameData.height; i++) for(let j=0; j<gameData.width; j++){
+        if(gameData.layout[i][j] == -1 && !gameData.visible[i][j]){
+            const cell = getCellObject(i, j);
+            showCellValue(cell, -1);
+        }
+    }
+}
