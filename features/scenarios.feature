@@ -160,12 +160,11 @@ And the user reveals the cell "5-2"
 When the user resets the board
 Then all cells are hidden
 
-@manual
 Scenario: Resetting the board: resetting the remaining flags counter
 Given the user loads the default layout
 And the user tags the cell "3-4" with "a flag"
 And the user tags the cell "5-2" with "a flag"
-When the user reset the board
+When the user resets the board
 Then the remaining flags counter shows the value "10"
 
 @manual
@@ -173,7 +172,7 @@ Scenario: Resetting the board: resetting the timer
 Given the user loads the custom layout "oxo"
 And the user clicks the cell "1-1"
 And the user waits "5" seconds
-When the user reset the board
+When the user resets the board
 Then the timer shows the value "0"
 
 @manual
