@@ -63,3 +63,14 @@ function setFlagCounter(string)
 {
     document.getElementById('flag-counter').innerText = string;
 }
+
+function setSmileyState(string)
+{
+    const smiley = document.getElementById('smiley');
+    if(!smiley.classList.contains(string)){
+        smiley.removeAttribute('class');
+        smiley.classList.add(string);
+        let sentence = 'a ' + string + ' face';
+        smiley.setAttribute('test-value', sentence);
+    }
+}

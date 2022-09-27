@@ -82,6 +82,13 @@ Given('the user loads the custom layout', async (docString) => {
     await page.locator('id=layout-data').fill(docString);
     await page.click('id=mockup-button');
 });
+
+Given('the user wins the game', async () => {
+    await page.goto(url + '?layout=xo');
+    let cellId = getCellId('1-2');
+    await page.click('id=' + cellId);
+});
+
        
 When('the user reveals the cell {string}', async (string) => {
     let cellId = getCellId(string);
@@ -142,3 +149,8 @@ Then('the remaining flags counter shows the value {string}', async (string) => {
     expect(value).toBe(string);
 });
 
+Then('the smiley shows {string}', async (string) => {
+    const flagCounter = await page.locator('id=smiley');
+    let value = await flagCounter.getAttribute('test-value');
+    expect(value).toBe(string);
+});

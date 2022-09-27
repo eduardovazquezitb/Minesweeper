@@ -104,7 +104,6 @@ And the user tags the cell "1-1" with "a question mark"
 When the user untags the cell "1-1"
 Then the cell "1-1" shows "nothing"
 
-@manual
 Scenario: Winning the game: happy face
 Given the user wins the game
 Then the smiley shows 'a happy face'

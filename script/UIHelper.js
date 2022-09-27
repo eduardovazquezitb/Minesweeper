@@ -1,21 +1,32 @@
 function initUI(gameData)
 {
-    if(gameData.state == 'victory')
+    if(gameData.state == 'victory'){
         document.title = 'Victory';
-    else
+        setSmileyState('happy');
+    }
+    else{
         document.title = 'Minesweeper';
+        setSmileyState('neutral');
+    }
     
     setFlagCounter(gameData.mines.toString());
 }
 
 function updateUI(gameData)
 {
-    if(gameData.state == 'gameover')
+    if(gameData.state == 'gameover'){
         document.title = 'Game Over';
-    else if(gameData.state == 'victory')
+        setSmileyState('sad');
+
+    }
+    else if(gameData.state == 'victory'){
         document.title = 'Victory';
-    else
+        setSmileyState('happy');
+    }
+    else{
         document.title = 'Minesweeper';
+        setSmileyState('neutral');
+    }
 }
 
 function modifyCellTag(cell)
