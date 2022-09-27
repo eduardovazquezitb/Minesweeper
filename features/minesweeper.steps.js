@@ -159,3 +159,10 @@ Then('the smiley shows {string}', async (string) => {
     let value = await flagCounter.getAttribute('test-value');
     expect(value).toBe(string);
 });
+
+Then('the timer shows the value {string}', async (string) => {
+    const flagCounter = await page.locator('id=timer');
+    let value = await flagCounter.innerText();
+    expect(value).toBe(string);
+});
+

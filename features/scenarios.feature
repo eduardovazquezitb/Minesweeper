@@ -139,7 +139,6 @@ Examples:
 | oooo-oxox           |   2   |
 | oo-xx-ox-xo         |   4   |
 
-@manual
 Scenario: Loading the timer
 Given the user loads the default layout
 Then the timer shows the value "0"
