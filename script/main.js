@@ -1,6 +1,7 @@
 let gameData = {};
 
 window.addEventListener('DOMContentLoaded', () => {
+    disableOnContextMenu();
     let URLParameters = getURLParameters();
     gameData = loadURLParameters(URLParameters, gameData);
     InitGame(gameData);
@@ -12,6 +13,7 @@ function InitGame(currentGameData)
     createDOMTable(currentGameData.height, currentGameData.width);
     countBombs(currentGameData);
     connectOnClickEvents(currentGameData);
+    currentGameData.state = checkGameState(currentGameData);
     updateUI(currentGameData);
 }
 
@@ -49,32 +51,54 @@ function isPositionValid(position, currentGameData)
     return isRowValid && isColumnValid;
 }
 
-function revealCell(position, gameData)
+function revealCell(position, currentGameData)
 {
     let cell = getCellObject(position.row, position.column);
-    let cellValue = gameData.layout[position.row][position.column];
+    let cellValue = currentGameData.layout[position.row][position.column];
     showCellValue(cell, cellValue);
-    gameData.visible[position.row][position.column] = true;
-    updateUI(gameData);
+    currentGameData.visible[position.row][position.column] = true;
+    currentGameData.state = checkGameState(currentGameData);
+    updateUI(currentGameData);
     cell.onclick = function () {};
     if(cellValue == 0)
-        revealNeighbourCells(position, gameData);
+        revealNeighbourCells(position, currentGameData);
 }
 
-function tagCell(position, gameData)
+function tagCell(position, currentGameData)
 {
-    if(!gameData.visible[position.row][position.column]){
+    if(!currentGameData.visible[position.row][position.column]){
         let cell = getCellObject(position.row, position.column);
         modifyCellTag(cell);
     }
 }
 
-function revealNeighbourCells(position, gameData)
+function revealNeighbourCells(position, currentGameData)
 {
-    let neighbours = getAdjacentCells(position.row, position.column, gameData)
+    let neighbours = getAdjacentCells(position.row, position.column, currentGameData)
     for(let k = 0; k<neighbours.length; k++)
     {
         let neighbour = getCellObject(neighbours[k].row, neighbours[k].column);
         neighbour.click();
     }
+}
+
+function checkGameState(currentGameData)
+{
+    var visibleMines = 0;
+    var visibleCells = 0;
+    for(let i = 0; i<currentGameData.height; i++) for(let j = 0; j<currentGameData.width; j++)
+    {
+        if(currentGameData.visible[i][j]) 
+        {
+            visibleCells++;
+            if(currentGameData.layout[i][j] == -1)
+                visibleMines++;
+        }
+    }
+        
+    if(visibleMines > 0)
+        return 'gameover';
+    else if(visibleCells == currentGameData.width * currentGameData.height - currentGameData.mines)
+        return 'victory';
+    return currentGameData.state;
 }

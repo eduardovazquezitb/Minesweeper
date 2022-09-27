@@ -4,11 +4,19 @@
   <head>
     <link rel="stylesheet" href="./style/style.css" />
     <title>Minesweeper</title>
+    <link rel="shortcut icon" type="png" href="./img/fav.png"/>
   </head>
   <body>
-    <table class="minesweeper" id="table">
+    <div class="minesweeper" id="minesweeper">
+      <div id="first-row">
+        <label id="flag-counter" class="counter">0</label>
+        <img id="smiley" class="neutral"/>
+        <label id="timer" class="counter">0</label>
+      </div>
+      <table id="table">
 
-    </table>
+      </table>
+    </div>
 
     <script src="./script/popUpHelper.js" defer></script>
     <script src="./script/UIHelper.js" defer></script>

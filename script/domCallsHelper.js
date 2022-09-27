@@ -23,9 +23,7 @@ function EmptyTable()
     document.getElementById('table').remove();
     var table = document.createElement('table');
     table.setAttribute('id', 'table');
-    table.classList.add('minesweeper');
-    table.oncontextmenu = function () { return false; };
-    document.body.appendChild(table);
+    document.getElementById('minesweeper').appendChild(table);
 }
 
 function connectOnClickEvents(gameData)
@@ -37,6 +35,12 @@ function connectOnClickEvents(gameData)
         cell.onclick = revealCell.bind(cell, position, gameData);
         cell.oncontextmenu = function(event) {event.preventDefault(); tagCell(position, gameData);}
     }
+}
+
+function disableOnContextMenu()
+{
+    let minesweeper = document.getElementById('minesweeper');
+    minesweeper.oncontextmenu = function () { return false; };
 }
 
 function getCellObject(row, column)

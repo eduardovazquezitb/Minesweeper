@@ -1,19 +1,47 @@
 .minesweeper{
     margin: auto;
-    border: solid black 1px;
-    padding: 0px 0px 0px 0px;
+    display: block;
 }
 
-.minesweeper *{
+.minesweeper #first-row{   
+    width: 200px;
+    height: 100px;
+    margin: auto;
+    position: relative;
+}
+
+.minesweeper #flag-counter{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.minesweeper #smiley{
+    width: 96px;
+    height: 96px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.minesweeper #timer{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.minesweeper #table{
+    margin: auto;
+    border: solid black 1px;
     padding: 0px 0px 0px 0px;
-    margin: 0px 0px 0px 0px;
 }
 
 .minesweeper td{
     padding: 0px 0px 0px 0px;
     margin: 0px 0px 0px 0px;
-    width: 24px;
-    height: 24px;
+    width: 48px;
+    height: 48px;
     background-image: url('../img/hidden.png');
     background-size: cover;
 }
@@ -74,9 +102,25 @@
     cursor: pointer;
 }
 
+.minesweeper .neutral{
+    content: url('../img/neutral.png');
+}
+
+.minesweeper .happy{
+    content: url('../img/happy.png');
+}
+
+.minesweeper .sad{
+    content: url('../img/sad.png');
+}
+
+.minesweeper .counter{
+    border: solid black 1px;
+}
+
 .popup{
-    width: 200px;
-    height: 200px;
+    width: 450px;
+    height: 450px;
     position: absolute;
     border: black solid;
     background-color: #fff;
@@ -88,6 +132,14 @@
     padding: 0 30px 30px;
 }
 
+.popup *{
+    font-size: 30px;
+}
+
+.popup textarea{
+    width: 350px;
+}
+
 .popup button{
-    margin-top: 10px;
+    margin-top: 30px;
 }
