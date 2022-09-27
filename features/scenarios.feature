@@ -108,9 +108,8 @@ Scenario: Winning the game: happy face
 Given the user wins the game
 Then the smiley shows 'a happy face'
 
-@manual
 Scenario: Losing the game: sad face
-Given the user has lost the game
+Given the user loses the game
 Then the smiley shows 'a sad face'
 
 @manual

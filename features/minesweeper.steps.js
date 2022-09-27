@@ -89,7 +89,12 @@ Given('the user wins the game', async () => {
     await page.click('id=' + cellId);
 });
 
-       
+Given('the user loses the game', async () => {
+    await page.goto(url + '?layout=xo');
+    let cellId = getCellId('1-1');
+    await page.click('id=' + cellId);
+});
+    
 When('the user reveals the cell {string}', async (string) => {
     let cellId = getCellId(string);
     await page.click('id=' + cellId);
