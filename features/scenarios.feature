@@ -130,7 +130,6 @@ x··
 ··x
 """
 
-@manual
 Scenario: Loading the remaining flags counter
 Given the user loads the custom layout "<layout>"
 Then the remaining flags counter shows the value "<flags>"

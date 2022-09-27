@@ -14,7 +14,7 @@ function InitGame(currentGameData)
     countBombs(currentGameData);
     connectOnClickEvents(currentGameData);
     currentGameData.state = checkGameState(currentGameData);
-    updateUI(currentGameData);
+    initUI(currentGameData);
 }
 
 function countBombs(currentGameData)

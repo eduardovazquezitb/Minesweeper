@@ -1,3 +1,13 @@
+function initUI(gameData)
+{
+    if(gameData.state == 'victory')
+        document.title = 'Victory';
+    else
+        document.title = 'Minesweeper';
+    
+    setFlagCounter(gameData.mines.toString());
+}
+
 function updateUI(gameData)
 {
     if(gameData.state == 'gameover')

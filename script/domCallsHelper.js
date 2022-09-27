@@ -58,3 +58,8 @@ function getPopupDOMObject()
 {
     return document.getElementById('popup');
 }
+
+function setFlagCounter(string)
+{
+    document.getElementById('flag-counter').innerText = string;
+}

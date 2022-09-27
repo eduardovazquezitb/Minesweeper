@@ -136,3 +136,9 @@ Then('the cell {string} shows {string}', async (string, string2) => {
     expect(value).toBe(translateStringToTestValue(string2));
 });
 
+Then('the remaining flags counter shows the value {string}', async (string) => {
+    const flagCounter = await page.locator('id=flag-counter');
+    let value = await flagCounter.innerText();
+    expect(value).toBe(string);
+});
+
