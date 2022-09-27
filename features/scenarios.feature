@@ -167,7 +167,6 @@ And the user tags the cell "5-2" with "a flag"
 When the user resets the board
 Then the remaining flags counter shows the value "10"
 
-@manual
 Scenario: Resetting the board: resetting the timer
 Given the user loads the custom layout "oxo"
 And the user clicks the cell "1-1"
