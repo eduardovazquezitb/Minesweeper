@@ -153,12 +153,11 @@ Given the user wins the game
 When the user resets the board
 Then the smiley shows 'a neutral face'
 
-@manual
 Scenario: Resetting the board: hiding all cells
 Given the user loads the default layout
 And the user tags the cell "3-4" with "a flag"
 And the user reveals the cell "5-2"
-When the user reset the board
+When the user resets the board
 Then all cells are hidden
 
 @manual

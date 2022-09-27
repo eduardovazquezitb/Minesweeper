@@ -152,6 +152,15 @@ Then('the cell {string} shows {string}', async (string, string2) => {
     expect(value).toBe(translateStringToTestValue(string2));
 });
 
+Then('all cells are hidden', async () => {
+    const cells = await page.locator('.minesweeper td');
+    const count = await cells.count()
+    for (let i = 0; i < count; ++i){
+        let cellValue = await cells.nth(i).getAttribute('test-value');
+        expect(cellValue).toBe('hidden');
+    }
+});
+
 Then('the remaining flags counter shows the value {string}', async (string) => {
     const flagCounter = await page.locator('id=flag-counter');
     let value = await flagCounter.innerText();
