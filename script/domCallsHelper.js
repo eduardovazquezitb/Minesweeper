@@ -35,6 +35,9 @@ function connectOnClickEvents(gameData)
         cell.onclick = revealCell.bind(cell, position, gameData);
         cell.oncontextmenu = function(event) {event.preventDefault(); tagCell(position, gameData);}
     }
+
+    const smiley = getSmileyObject();
+    smiley.onclick = resetGame.bind(smiley, gameData);
 }
 
 function disableOnContextMenu()
@@ -73,4 +76,9 @@ function setSmileyState(string)
         let sentence = 'a ' + string + ' face';
         smiley.setAttribute('test-value', sentence);
     }
+}
+
+function getSmileyObject()
+{
+    return document.getElementById('smiley');
 }

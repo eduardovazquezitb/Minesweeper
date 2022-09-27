@@ -95,6 +95,10 @@ Given('the user loses the game', async () => {
     await page.click('id=' + cellId);
 });
     
+When('the user resets the board', async () => {
+    await page.click('id=smiley');
+});
+
 When('the user reveals the cell {string}', async (string) => {
     let cellId = getCellId(string);
     await page.click('id=' + cellId);

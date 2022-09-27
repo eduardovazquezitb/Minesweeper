@@ -104,3 +104,10 @@ function checkGameState(currentGameData)
         return 'victory';
     return currentGameData.state;
 }
+
+function resetGame(currentGameData)
+{
+    let URLParameters = getURLParameters();
+    currentGameData = loadURLParameters(URLParameters, currentGameData);
+    InitGame(currentGameData);
+}

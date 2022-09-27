@@ -143,15 +143,14 @@ Scenario: Loading the timer
 Given the user loads the default layout
 Then the timer shows the value "0"
 
-@manual
 Scenario: Resetting the board: resetting defeat state
-Given the user has lost the game
+Given the user loses the game
 When the user resets the board
 Then the smiley shows 'a neutral face'
 
 @manual
 Scenario: Resetting the board: resetting victory state
-Given the user has won the game
+Given the user wins the game
 When the user resets the board
 Then the smiley shows 'a neutral face'
 

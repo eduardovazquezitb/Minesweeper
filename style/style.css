@@ -25,6 +25,10 @@
     transform: translate(-50%, -50%);
 }
 
+.minesweeper #smiley:hover{
+    cursor: pointer;
+}
+
 .minesweeper #timer{
     position: absolute;
     right: 0;
