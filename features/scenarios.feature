@@ -227,7 +227,6 @@ Given the user loads the default layout
 When the user "right" clicks the cell "1-1"
 Then the cell "1-1" shows "a flag"
 
-@manual
 Scenario: Using the mouse: Right click twice to tag a question mark
 Given the user loads the default layout
 And the user "right" clicks the cell "1-1"
