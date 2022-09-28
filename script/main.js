@@ -59,7 +59,9 @@ function revealCell(position, currentGameData)
     let cell = getCellObject(position.row, position.column);
     let cellValue = currentGameData.layout[position.row][position.column];
     showCellValue(cell, cellValue);
-    currentGameData.visible[position.row][position.column] = true;
+    if(currentGameData.visible[position.row][position.column] == "flag")
+        currentGameData.flags++;
+    currentGameData.visible[position.row][position.column] = "visible";
     currentGameData.state = checkGameState(currentGameData);
     updateUI(currentGameData);
     cell.onclick = function () {};
@@ -72,10 +74,31 @@ function revealCell(position, currentGameData)
 
 function tagCell(position, currentGameData)
 {
-    if(!currentGameData.visible[position.row][position.column]){
+    let tagState = currentGameData.visible[position.row][position.column];
+    console.log(tagState);
+    if(tagState != "visible"){
         let cell = getCellObject(position.row, position.column);
-        modifyCellTag(cell);
+
+        let newClass;
+        switch(tagState){
+            case "hidden":
+                newClass = "flag";
+                currentGameData.flags--;
+                break;
+            case "flag":
+                newClass = "question";
+                currentGameData.flags++;
+                break;
+            case "question":
+                newClass = "hidden";
+                break;
+        }
+        currentGameData.visible[position.row][position.column] = newClass;
+
+        modifyCellTag(cell, newClass);
     }
+    updateUI(currentGameData);
+    gameData = currentGameData;
 }
 
 function revealNeighbourCells(position, currentGameData)
@@ -94,7 +117,7 @@ function checkGameState(currentGameData)
     var visibleCells = 0;
     for(let i = 0; i<currentGameData.height; i++) for(let j = 0; j<currentGameData.width; j++)
     {
-        if(currentGameData.visible[i][j]) 
+        if(currentGameData.visible[i][j] == "visible") 
         {
             visibleCells++;
             if(currentGameData.layout[i][j] == -1)

@@ -9,7 +9,7 @@ function initUI(gameData)
         setSmileyState('neutral');
     }
     
-    setFlagCounter(gameData.mines.toString());
+    setFlagCounter(gameData.flags.toString());
     setTimer(gameData.timer);
 }
 
@@ -31,20 +31,15 @@ function updateUI(gameData)
         document.title = 'Victory';
         setSmileyState('happy');
     }
+
+    setFlagCounter(gameData.flags);
 }
 
-function modifyCellTag(cell)
+function modifyCellTag(cell, newClass)
 {
-    let classes = ["hidden", "flag", "question"];
-    let cellClassIndex = -1;
-    for(let i =0 ; cellClassIndex == -1 && i<3; i++)
-        if(cell.classList.contains(classes[i]))
-            cellClassIndex = i;
-    cellClassIndex = (cellClassIndex+1)%3;
-
     cell.removeAttribute('class');
-    cell.classList.add(classes[cellClassIndex]);
-    cell.setAttribute('test-value', classes[cellClassIndex]);
+    cell.classList.add(newClass);
+    cell.setAttribute('test-value', newClass);
 }
 
 function showCellValue(cell, cellValue)
@@ -67,7 +62,7 @@ function translateCellValueToClass(cellValue)
 function revealAllMines(gameData)
 {
     for(let i =0; i<gameData.height; i++) for(let j=0; j<gameData.width; j++){
-        if(gameData.layout[i][j] == -1 && !gameData.visible[i][j]){
+        if(gameData.layout[i][j] == -1 && gameData.visible[i][j] != "visible"){
             const cell = getCellObject(i, j);
             showCellValue(cell, -1);
         }

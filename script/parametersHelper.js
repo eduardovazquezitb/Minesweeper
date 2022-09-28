@@ -19,6 +19,7 @@ function loadURLParameters(URLParameters, gameData)
         height: 8,
         width: 8,
         mines: 10,
+        flags: 10,
         timer: 0,
         state: 'beforeStart'
     }
@@ -27,8 +28,10 @@ function loadURLParameters(URLParameters, gameData)
         gameData.width = URLParameters.x;
     if("y" in URLParameters)
         gameData.height = URLParameters.y;
-    if("mines" in URLParameters)
+    if("mines" in URLParameters){
         gameData.mines = URLParameters.mines;
+        gameData.flags = URLParameters.flags;
+    }
 
     if("layout" in URLParameters)
         gameData = loadCustomLayout(URLParameters.layout);
@@ -65,11 +68,12 @@ function loadCustomLayout(customLayout)
                 inputGameData.mines++;
             }
             row.push(number);
-            visibleRow.push(false);
+            visibleRow.push("hidden");
         }
         inputGameData.layout.push(row);
         inputGameData.visible.push(visibleRow);
     }
+    inputGameData.flags = inputGameData.mines;
     return inputGameData;
 }
 
@@ -79,7 +83,7 @@ function loadDefaultLayout(gameData)
         gameData.mines = gameData.width * gameData.height;
 
     gameData.layout = new Array(gameData.height).fill(0).map(() => new Array(gameData.width).fill(0));
-    gameData.visible = new Array(gameData.height).fill(0).map(() => new Array(gameData.width).fill(false));
+    gameData.visible = new Array(gameData.height).fill(0).map(() => new Array(gameData.width).fill("hidden"));
 
     for(let i = 0; i < gameData.mines; i++)
     {

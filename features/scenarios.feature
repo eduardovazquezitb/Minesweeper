@@ -174,7 +174,6 @@ And the user waits "5" seconds
 When the user resets the board
 Then the timer shows the value "0"
 
-@manual
 Scenario: Tagging a cell with a flag: remaining flags counter goes down
 Given the user loads the default layout
 When the user tags the cell "1-1" with "a flag"
