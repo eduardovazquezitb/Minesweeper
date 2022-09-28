@@ -21,7 +21,8 @@ function loadURLParameters(URLParameters, gameData)
         mines: 10,
         flags: 10,
         timer: 0,
-        state: 'beforeStart'
+        state: 'beforeStart',
+        cheating: false
     }
 
     if("x" in URLParameters)
@@ -38,6 +39,9 @@ function loadURLParameters(URLParameters, gameData)
     else
         gameData = loadDefaultLayout(gameData);
     
+    if("visible" in URLParameters)
+        gameData.cheating = true;
+
     if("mockup" in URLParameters)
         createPopUp(gameData); 
 
@@ -55,6 +59,7 @@ function loadCustomLayout(customLayout)
     inputGameData.state = 'beforeStart';
     inputGameData.layout = [];
     inputGameData.visible = [];
+    inputGameData.cheating = false;
     for(let i = 0; i<inputGameData.height; i++)
     {
         let row = [];

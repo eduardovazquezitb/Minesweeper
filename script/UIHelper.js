@@ -11,6 +11,14 @@ function initUI(gameData)
     
     setFlagCounter(gameData.flags.toString());
     setTimer(gameData.timer);
+
+    if(gameData.cheating){
+        for(let i =0; i<gameData.height; i++)
+            for(let j=0; j<gameData.width; j++){
+                let cell = getCellObject(i, j);
+                showCellValue(cell, gameData.layout[i][j]);
+            }
+    }
 }
 
 function updateTimer(gameData)

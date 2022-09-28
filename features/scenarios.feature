@@ -247,7 +247,6 @@ And the user reveals the cell "5-2"
 When the user presses the smiley
 Then the default board resets
 
-@manual
 Scenario: Random generation: Default layout always has 10 mines
 Given the user loads the default layout with all cells visible "100" times
 When the user counts how many mines are there
