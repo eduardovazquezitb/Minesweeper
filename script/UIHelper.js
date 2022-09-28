@@ -10,6 +10,15 @@ function initUI(gameData)
     }
     
     setFlagCounter(gameData.mines.toString());
+    setTimer(gameData.timer);
+}
+
+function updateTimer(gameData)
+{
+    if(gameData.state == 'midgame'){
+        gameData.timer++;
+        setTimer(gameData.timer);
+    }
 }
 
 function updateUI(gameData)
@@ -17,15 +26,10 @@ function updateUI(gameData)
     if(gameData.state == 'gameover'){
         document.title = 'Game Over';
         setSmileyState('sad');
-
     }
     else if(gameData.state == 'victory'){
         document.title = 'Victory';
         setSmileyState('happy');
-    }
-    else{
-        document.title = 'Minesweeper';
-        setSmileyState('neutral');
     }
 }
 

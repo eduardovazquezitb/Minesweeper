@@ -82,3 +82,8 @@ function getSmileyObject()
 {
     return document.getElementById('smiley');
 }
+
+function setTimer(number)
+{
+    document.getElementById('timer').innerText = number.toString();
+}

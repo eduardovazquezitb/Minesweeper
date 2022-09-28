@@ -19,6 +19,7 @@ function loadURLParameters(URLParameters, gameData)
         height: 8,
         width: 8,
         mines: 10,
+        timer: 0,
         state: 'beforeStart'
     }
 
@@ -47,6 +48,7 @@ function loadCustomLayout(customLayout)
     inputGameData.height = layoutSplit.length;
     inputGameData.width = layoutSplit[0].length;
     inputGameData.mines = 0;
+    inputGameData.timer = 0;
     inputGameData.state = 'beforeStart';
     inputGameData.layout = [];
     inputGameData.visible = [];

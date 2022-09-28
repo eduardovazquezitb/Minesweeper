@@ -169,7 +169,7 @@ Then the remaining flags counter shows the value "10"
 
 Scenario: Resetting the board: resetting the timer
 Given the user loads the custom layout "oxo"
-And the user clicks the cell "1-1"
+And the user reveals the cell "1-1"
 And the user waits "5" seconds
 When the user resets the board
 Then the timer shows the value "0"
@@ -211,7 +211,6 @@ Given the user loads the layout "xo"
 When the user tags all cells with "a flag"
 Then the remaining flags counter shows the value "1"
 
-@manual
 Scenario: The timer counts time after first click
 Given the user loads the custom layout
 """

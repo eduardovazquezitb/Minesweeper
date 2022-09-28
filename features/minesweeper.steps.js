@@ -94,7 +94,12 @@ Given('the user loses the game', async () => {
     let cellId = getCellId('1-1');
     await page.click('id=' + cellId);
 });
-    
+
+Given('the user waits {string} seconds', async (string) => {
+    let milliseconds = parseInt(string)*1000;
+    await page.waitForTimeout(milliseconds);
+});
+
 When('the user resets the board', async () => {
     await page.click('id=smiley');
 });

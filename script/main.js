@@ -5,6 +5,7 @@ window.addEventListener('DOMContentLoaded', () => {
     let URLParameters = getURLParameters();
     gameData = loadURLParameters(URLParameters, gameData);
     InitGame(gameData);
+    setInterval(function() {updateTimer(gameData)}, 1000);
 });
 
 function InitGame(currentGameData)
@@ -53,6 +54,8 @@ function isPositionValid(position, currentGameData)
 
 function revealCell(position, currentGameData)
 {
+    if(currentGameData.state == 'beforeStart')
+        currentGameData.state = 'midgame';
     let cell = getCellObject(position.row, position.column);
     let cellValue = currentGameData.layout[position.row][position.column];
     showCellValue(cell, cellValue);
@@ -64,6 +67,7 @@ function revealCell(position, currentGameData)
         revealNeighbourCells(position, currentGameData);
     if(cellValue == -1)
         revealAllMines(currentGameData);
+    gameData = currentGameData;
 }
 
 function tagCell(position, currentGameData)
@@ -110,4 +114,5 @@ function resetGame(currentGameData)
     let URLParameters = getURLParameters();
     currentGameData = loadURLParameters(URLParameters, currentGameData);
     InitGame(currentGameData);
+    gameData = currentGameData;
 }
