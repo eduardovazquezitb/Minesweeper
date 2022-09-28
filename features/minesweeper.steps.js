@@ -129,6 +129,17 @@ When('the user untags the cell {string}', async (string) => {
     }
 });
 
+When('the user tags all cells with {string}', async (string) => {
+    const cells = await page.locator('.minesweeper td');
+    const count = await cells.count()
+    for (let i = 0; i < count; ++i){
+        let cellId = await cells.nth(i).getAttribute('id');
+        await page.click('id=' + cellId, { button: 'right' });
+        if(string == 'a question mark')
+            await page.click('id=' + cellId, { button: 'right' });
+    }
+});
+
 Then('the user has lost the game', async () => {
     const flagCounter = await page.locator('id=smiley');
     let value = await flagCounter.getAttribute('test-value');

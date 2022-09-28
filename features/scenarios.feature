@@ -200,11 +200,10 @@ Given the user loads the custom layout "xo"
 When the user tags the cell "1-1" with "a flag"
 Then the user has neither lost or won
 
-@manual
 Scenario: Tagging a cell with a flag: using more flags than bombs
-Given the user loads the layout "xo"
+Given the user loads the custom layout "xo"
 When the user tags all cells with "a flag"
-Then the remaining flags counter shows the value "1"
+Then the remaining flags counter shows the value "-1"
 
 Scenario: The timer counts time after first click
 Given the user loads the custom layout
