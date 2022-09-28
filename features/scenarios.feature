@@ -179,7 +179,6 @@ Given the user loads the default layout
 When the user tags the cell "1-1" with "a flag"
 Then the remaining flags counter shows the value "9"
 
-@manual
 Scenario: Untagging a cell with a flag: remaining flags counter goes up
 Given the user loads the default layout
 And the user tags the cell "1-1" with "a flag"
