@@ -240,13 +240,12 @@ And the user "right" clicks the cell "1-1"
 When the user "right" clicks the cell "1-1"
 Then the cell "1-1" shows "nothing"
 
-@manual
 Scenario: Using the mouse: Pressing the smiley to reset
 Given the user loads the default layout
 And the user tags the cell "3-4" with "a flag"
 And the user reveals the cell "5-2"
 When the user presses the smiley
-Then the board resets
+Then the default board resets
 
 @manual
 Scenario: Random generation: Default layout always has 10 mines

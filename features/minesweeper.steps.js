@@ -147,6 +147,12 @@ When('the user {string} clicks the cell {string}', async (string, string2) => {
     await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2, {button: string});
 });
 
+When('the user presses the smiley', async () => {
+    const cell = await page.locator('id=smiley');
+    const box = await cell.boundingBox();
+    await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
+});
+
 Then('the user has lost the game', async () => {
     const flagCounter = await page.locator('id=smiley');
     let value = await flagCounter.getAttribute('test-value');
@@ -194,20 +200,20 @@ Then('the remaining flags counter shows the value {string}', async (string) => {
 });
 
 Then('the smiley shows {string}', async (string) => {
-    const flagCounter = await page.locator('id=smiley');
-    let value = await flagCounter.getAttribute('test-value');
+    const smiley = await page.locator('id=smiley');
+    let value = await smiley.getAttribute('test-value');
     expect(value).toBe(string);
 });
 
 Then('the timer shows the value {string}', async (string) => {
-    const flagCounter = await page.locator('id=timer');
-    let value = await flagCounter.innerText();
+    const timer = await page.locator('id=timer');
+    let value = await timer.innerText();
     expect(value).toBe(string);
 });
 
 Then('the user has neither lost or won', async () => {
-    const flagCounter = await page.locator('id=smiley');
-    let value = await flagCounter.getAttribute('test-value');
+    const smiley = await page.locator('id=smiley');
+    let value = await smiley.getAttribute('test-value');
     expect(value).toBe('a neutral face');
 });
 
@@ -216,4 +222,22 @@ Then('the cell {string} is revealed', async (string) => {
     const cell = await page.locator('id=' + cellId);
     let value = await cell.getAttribute('test-value');
     expect(value).not.toMatch(/hidden|flag|question/);
+});
+
+Then('the default board resets', async () => {
+    const cells = await page.locator('.minesweeper td');
+    const count = await cells.count()
+    for (let i = 0; i < count; ++i){
+        let cellValue = await cells.nth(i).getAttribute('test-value');
+        expect(cellValue).toBe('hidden');
+    }
+    const flagCounter = await page.locator('id=flag-counter');
+    let flagValue = await flagCounter.innerText();
+    expect(flagValue).toBe('10');
+    const timer = await page.locator('id=timer');
+    let timerValue = await timer.innerText();
+    expect(timerValue).toBe('0');
+    const smiley = await page.locator('id=smiley');
+    let smileyValue = await smiley.getAttribute('test-value');
+    expect(smileyValue).toBe('a neutral face');
 });
