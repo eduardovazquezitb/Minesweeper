@@ -217,31 +217,30 @@ When the user reveals the cell "1-1"
 And the user waits "5" seconds
 Then the timer shows the value "5"
 
-@manual
 Scenario: Using the mouse: Left click to reveal
-Given the user loads the layout "xo"
-When the user left clicks the cell "1-1"
+Given the user loads the custom layout "xo"
+When the user "left" clicks the cell "1-1"
 Then the cell "1-1" is revealed
 
 @manual
 Scenario: Using the mouse: Right click once to flag
 Given the user loads the default layout
-When the user right clicks the cell "1-1"
+When the user "right" clicks the cell "1-1"
 Then the cell "1-1" shows "a flag"
 
 @manual
 Scenario: Using the mouse: Right click twice to tag a question mark
 Given the user loads the default layout
-And the user right clicks the cell "1-1"
-When the user right clicks the cell "1-1"
+And the user "right" clicks the cell "1-1"
+When the user "right" clicks the cell "1-1"
 Then the cell "1-1" shows "a question mark"
 
 @manual
 Scenario: Using the mouse: Right click thrice to untag
 Given the user loads the default layout
-And the user right clicks the cell "1-1"
-And the user right clicks the cell "1-1"
-When the user right clicks the cell "1-1"
+And the user "right" clicks the cell "1-1"
+And the user "right" clicks the cell "1-1"
+When the user "right" clicks the cell "1-1"
 Then the cell "1-1" shows "nothing"
 
 @manual

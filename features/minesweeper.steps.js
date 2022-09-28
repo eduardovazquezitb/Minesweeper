@@ -140,6 +140,13 @@ When('the user tags all cells with {string}', async (string) => {
     }
 });
 
+When('the user {string} clicks the cell {string}', async (string, string2) => {
+    let cellId = getCellId(string2);
+    const cell = await page.locator('id=' + cellId);
+    const box = await cell.boundingBox();
+    await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2, {button: string});
+});
+
 Then('the user has lost the game', async () => {
     const flagCounter = await page.locator('id=smiley');
     let value = await flagCounter.getAttribute('test-value');
@@ -165,7 +172,6 @@ Then('the display shows the layout {string}', async (string) => {
 });
 
 Then('the cell {string} shows {string}', async (string, string2) => {
-
     let cellId = getCellId(string);
     const cell = await page.locator('id=' + cellId);
     let value = await cell.getAttribute('test-value');
@@ -203,4 +209,11 @@ Then('the user has neither lost or won', async () => {
     const flagCounter = await page.locator('id=smiley');
     let value = await flagCounter.getAttribute('test-value');
     expect(value).toBe('a neutral face');
+});
+
+Then('the cell {string} is revealed', async (string) => {
+    let cellId = getCellId(string);
+    const cell = await page.locator('id=' + cellId);
+    let value = await cell.getAttribute('test-value');
+    expect(value).not.toMatch(/hidden|flag|question/);
 });

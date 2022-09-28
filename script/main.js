@@ -56,27 +56,28 @@ function revealCell(position, currentGameData)
 {
     if(currentGameData.state == 'beforeStart')
         currentGameData.state = 'midgame';
-    let cell = getCellObject(position.row, position.column);
-    let cellValue = currentGameData.layout[position.row][position.column];
-    showCellValue(cell, cellValue);
-    if(currentGameData.visible[position.row][position.column] == "flag")
-        currentGameData.flags++;
-    currentGameData.visible[position.row][position.column] = "visible";
-    currentGameData.state = checkGameState(currentGameData);
-    updateUI(currentGameData);
-    cell.onclick = function () {};
-    if(cellValue == 0)
-        revealNeighbourCells(position, currentGameData);
-    if(cellValue == -1)
-        revealAllMines(currentGameData);
-    gameData = currentGameData;
+    if(currentGameData.state == 'midgame'){
+        let cell = getCellObject(position.row, position.column);
+        let cellValue = currentGameData.layout[position.row][position.column];
+        showCellValue(cell, cellValue);
+        if(currentGameData.visible[position.row][position.column] == "flag")
+            currentGameData.flags++;
+        currentGameData.visible[position.row][position.column] = "visible";
+        currentGameData.state = checkGameState(currentGameData);
+        updateUI(currentGameData);
+        cell.onclick = function () {};
+        if(cellValue == 0)
+            revealNeighbourCells(position, currentGameData);
+        if(cellValue == -1)
+            revealAllMines(currentGameData);
+        gameData = currentGameData;
+    }
 }
 
 function tagCell(position, currentGameData)
 {
     let tagState = currentGameData.visible[position.row][position.column];
-    console.log(tagState);
-    if(tagState != "visible"){
+    if(tagState != "visible" && (currentGameData.state == 'midgame' || currentGameData.state == 'beforeStart')){
         let cell = getCellObject(position.row, position.column);
 
         let newClass;
