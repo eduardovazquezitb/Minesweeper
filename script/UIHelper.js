@@ -1,7 +1,7 @@
 function initUI(gameData)
 {
     if(gameData.state == 'victory'){
-        document.title = 'Victory';
+        //document.title = 'Victory';
         setSmileyState('happy');
     }
     else{
@@ -24,11 +24,11 @@ function updateTimer(gameData)
 function updateUI(gameData)
 {
     if(gameData.state == 'gameover'){
-        document.title = 'Game Over';
+        //document.title = 'Game Over';
         setSmileyState('sad');
     }
     else if(gameData.state == 'victory'){
-        document.title = 'Victory';
+        //document.title = 'Victory';
         setSmileyState('happy');
     }
 

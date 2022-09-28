@@ -195,7 +195,6 @@ Given the user loads the custom layout "xo"
 When the user tags the cell "1-2" with "a flag"
 Then the remaining flags counter shows the value "0"
 
-@manual
 Scenario: Correctly tagging a cell with a flag: game does not end
 Given the user loads the custom layout "xo"
 When the user tags the cell "1-1" with "a flag"

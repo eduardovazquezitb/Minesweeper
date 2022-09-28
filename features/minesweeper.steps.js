@@ -130,11 +130,15 @@ When('the user untags the cell {string}', async (string) => {
 });
 
 Then('the user has lost the game', async () => {
-    await expect(page).toHaveTitle('Game Over');
+    const flagCounter = await page.locator('id=smiley');
+    let value = await flagCounter.getAttribute('test-value');
+    expect(value).toBe('a sad face');
 });
 
 Then('the user has won the game', async () => {
-    await expect(page).toHaveTitle('Victory');
+    const flagCounter = await page.locator('id=smiley');
+    let value = await flagCounter.getAttribute('test-value');
+    expect(value).toBe('a happy face');
 });
 
 Then('the display shows the layout', async (docString) => {
@@ -184,3 +188,8 @@ Then('the timer shows the value {string}', async (string) => {
     expect(value).toBe(string);
 });
 
+Then('the user has neither lost or won', async () => {
+    const flagCounter = await page.locator('id=smiley');
+    let value = await flagCounter.getAttribute('test-value');
+    expect(value).toBe('a neutral face');
+});
