@@ -221,8 +221,7 @@ Scenario: Using the mouse: Left click to reveal
 Given the user loads the custom layout "xo"
 When the user "left" clicks the cell "1-1"
 Then the cell "1-1" is revealed
-
-@manual
+ 
 Scenario: Using the mouse: Right click once to flag
 Given the user loads the default layout
 When the user "right" clicks the cell "1-1"
