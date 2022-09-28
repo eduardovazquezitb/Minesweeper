@@ -185,7 +185,6 @@ And the user tags the cell "1-1" with "a flag"
 When the user untags the cell "1-1"
 Then the remaining flags counter shows the value "10"
 
-@manual
 Scenario: Tagging a cell with a question mark: remaining flags counter does not change
 Given the user loads the default layout
 When the user tags the cell "1-1" with "a question mark"
