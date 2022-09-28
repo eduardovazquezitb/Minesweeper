@@ -233,7 +233,6 @@ And the user "right" clicks the cell "1-1"
 When the user "right" clicks the cell "1-1"
 Then the cell "1-1" shows "a question mark"
 
-@manual
 Scenario: Using the mouse: Right click thrice to untag
 Given the user loads the default layout
 And the user "right" clicks the cell "1-1"
