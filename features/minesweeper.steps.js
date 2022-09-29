@@ -69,6 +69,15 @@ async function readDisplay()
     return display;
 }
 
+function countMines(display)
+{
+    let mines = 0;
+    for(let i =0; i< display.length; i++)
+        if(display[i] == 'x')
+            mines++;
+    return mines;
+}
+
 Given('the user loads the default layout', async () => {
    await page.goto(url);
 });
@@ -98,6 +107,16 @@ Given('the user loses the game', async () => {
 Given('the user waits {string} seconds', async (string) => {
     let milliseconds = parseInt(string)*1000;
     await page.waitForTimeout(milliseconds);
+});
+
+Given('the user loads the default layout with all cells visible {string} times', async (string) => {
+    this.displays = [];
+    let numberOfTries = parseInt(string);
+    for(let i =0; i< numberOfTries; i++){
+        await page.goto(url + '?visible');
+        let display = await readDisplay();
+        this.displays.push(display);
+    }
 });
 
 When('the user resets the board', async () => {
@@ -151,6 +170,15 @@ When('the user presses the smiley', async () => {
     const cell = await page.locator('id=smiley');
     const box = await cell.boundingBox();
     await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
+});
+
+When('the user counts how many mines are there', async () => {
+    this.mines = [];
+    for(let i =0; i< this.displays.length; i++)
+    {
+        let mineCount = countMines(this.displays[i]);
+        this.mines.push(mineCount);
+    }
 });
 
 Then('the user has lost the game', async () => {
@@ -240,4 +268,16 @@ Then('the default board resets', async () => {
     const smiley = await page.locator('id=smiley');
     let smileyValue = await smiley.getAttribute('test-value');
     expect(smileyValue).toBe('a neutral face');
+});
+
+Then('there is always {string} mines on the field', async (string) => {
+    let min = this.mines[0], max = this.mines[0];
+    for(let i = 1; i< this.mines.length; i++)
+    {
+        if(this.mines[i] < min)
+            min = this.mines[i];
+        if(this.mines[i] > max)
+            max = this.mines[i];
+    }
+    expect(min + '-' + max).toBe(string + '-' + string);
 });
