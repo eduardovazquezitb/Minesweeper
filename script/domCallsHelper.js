@@ -46,6 +46,32 @@ function disableOnContextMenu()
     minesweeper.oncontextmenu = function () { return false; };
 }
 
+function showCellValue(row, column, cellValue)
+{
+    let cell = getCellObject(row, column);
+    cell.removeAttribute('class');
+    let cellClass = translateCellValueToClass(cellValue);
+    cell.classList.add(cellClass);
+    let testValue = cellValue.toString();
+    if(testValue == '-1') 
+        testValue = 'mine';
+    cell.setAttribute('test-value', testValue);
+}
+
+function modifyCellTag(row, column, newClass)
+{
+    let cell = getCellObject(row, column);
+    cell.removeAttribute('class');
+    cell.classList.add(newClass);
+    cell.setAttribute('test-value', newClass);
+}
+
+function clickOnCell(row, column)
+{
+    let cell = getCellObject(row, column);
+    cell.click();
+}
+
 function getCellObject(row, column)
 {
     let cellId = 'cell-' + row + '-' + column;
@@ -86,4 +112,10 @@ function getSmileyObject()
 function setTimer(number)
 {
     document.getElementById('timer').innerText = number.toString();
+}
+
+function disableRevealCell(row, column)
+{
+    let cell = getCellObject(row, column);
+    cell.onclick = function () {};
 }

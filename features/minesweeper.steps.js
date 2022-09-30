@@ -1,5 +1,6 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { expect } = require('@playwright/test');
+var anova1  = require( '@stdlib/stats\-anova1');
 
 const url = 'http://127.0.0.1:5500/';
 
@@ -181,6 +182,24 @@ When('the user counts how many mines are there', async () => {
     }
 });
 
+When('the user counts the frequency of each cell having a mine', async () => {
+    this.isBomb = [];
+    this.cellId = [];
+    for(let i =0 ; i<this.displays.length; i++)
+    {   
+        const regEx = new RegExp('-', "g");
+        let display = this.displays[i].replace(regEx,'');
+        for(let j=0; j< display.length; j++)
+        {
+            this.cellId.push(j);
+            if(display[j] == 'x')
+                this.isBomb.push(1.0);
+            else   
+                this.isBomb.push(0.0);
+        }
+    }
+});
+
 Then('the user has lost the game', async () => {
     const flagCounter = await page.locator('id=smiley');
     let value = await flagCounter.getAttribute('test-value');
@@ -280,4 +299,13 @@ Then('there is always {string} mines on the field', async (string) => {
             max = this.mines[i];
     }
     expect(min + '-' + max).toBe(string + '-' + string);
+});
+
+Then('no significant differences are found', async () => {
+    let anova = anova1( this.isBomb, this.cellId );
+    let anovaSplit = anova.print().split('\n');
+    let lastLine = anovaSplit[anovaSplit.length-1];
+    let resultat = lastLine.substring(0,lastLine.indexOf(':'));
+
+    expect(anova).toBe('patata');
 });

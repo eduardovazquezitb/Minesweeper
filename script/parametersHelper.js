@@ -26,12 +26,12 @@ function loadURLParameters(URLParameters, gameData)
     }
 
     if("x" in URLParameters)
-        gameData.width = URLParameters.x;
+        gameData.width = parseInt(URLParameters.x);
     if("y" in URLParameters)
-        gameData.height = URLParameters.y;
+        gameData.height = parseInt(URLParameters.y);
     if("mines" in URLParameters){
-        gameData.mines = URLParameters.mines;
-        gameData.flags = URLParameters.flags;
+        gameData.mines = parseInt(URLParameters.mines);
+        gameData.flags = gameData.mines;
     }
 
     if("layout" in URLParameters)
@@ -107,3 +107,10 @@ function getMineFreePosition(layout, height, width)
     } while(layout[row][column] == -1);
     return {"row":row, "column":column};
 }
+
+/*function getMineFreePosition(layout, height, width)
+{
+    for(let i = 0; i< height; i++) for(let j=0; j< width; j++)
+        if(layout[i][j] != -1)
+            return {"row":i, "column":j}
+}*/

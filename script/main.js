@@ -57,15 +57,14 @@ function revealCell(position, currentGameData)
     if(currentGameData.state == 'beforeStart')
         currentGameData.state = 'midgame';
     if(currentGameData.state == 'midgame'){
-        let cell = getCellObject(position.row, position.column);
         let cellValue = currentGameData.layout[position.row][position.column];
-        showCellValue(cell, cellValue);
+        showCellValue(position.row, position.column, cellValue);
         if(currentGameData.visible[position.row][position.column] == "flag")
             currentGameData.flags++;
         currentGameData.visible[position.row][position.column] = "visible";
         currentGameData.state = checkGameState(currentGameData);
         updateUI(currentGameData);
-        cell.onclick = function () {};
+        disableRevealCell(position.row, position.column);
         if(cellValue == 0)
             revealNeighbourCells(position, currentGameData);
         if(cellValue == -1)
@@ -78,25 +77,24 @@ function tagCell(position, currentGameData)
 {
     let tagState = currentGameData.visible[position.row][position.column];
     if(tagState != "visible" && (currentGameData.state == 'midgame' || currentGameData.state == 'beforeStart')){
-        let cell = getCellObject(position.row, position.column);
 
-        let newClass;
+        let newTag;
         switch(tagState){
             case "hidden":
-                newClass = "flag";
+                newTag = "flag";
                 currentGameData.flags--;
                 break;
             case "flag":
-                newClass = "question";
+                newTag = "question";
                 currentGameData.flags++;
                 break;
             case "question":
-                newClass = "hidden";
+                newTag = "hidden";
                 break;
         }
-        currentGameData.visible[position.row][position.column] = newClass;
+        currentGameData.visible[position.row][position.column] = newTag;
 
-        modifyCellTag(cell, newClass);
+        modifyCellTag(position.row, position.column, newTag);
     }
     updateUI(currentGameData);
     gameData = currentGameData;
@@ -106,10 +104,7 @@ function revealNeighbourCells(position, currentGameData)
 {
     let neighbours = getAdjacentCells(position.row, position.column, currentGameData)
     for(let k = 0; k<neighbours.length; k++)
-    {
-        let neighbour = getCellObject(neighbours[k].row, neighbours[k].column);
-        neighbour.click();
-    }
+        clickOnCell(neighbours[k].row, neighbours[k].column);
 }
 
 function checkGameState(currentGameData)

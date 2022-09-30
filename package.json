@@ -7,5 +7,8 @@
     "@cucumber/pretty-formatter": "^1.0.0",
     "@playwright/test": "^1.25.2",
     "playwright": "^1.25.2"
+  },
+  "devDependencies": {
+    "@stdlib/stats-anova1": "^0.0.7"
   }
 }

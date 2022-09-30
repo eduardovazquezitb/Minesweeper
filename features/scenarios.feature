@@ -254,6 +254,6 @@ Then there is always "10" mines on the field
 
 @manual @probabilistic
 Scenario: Random generation: No cell has more mines than the others
-Given the user loads the default layout with all cells visible "1000" times
+Given the user loads the default layout with all cells visible "500" times
 When the user counts the frequency of each cell having a mine
 Then no significant differences are found
