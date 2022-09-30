@@ -167,6 +167,7 @@ And the user tags the cell "5-2" with "a flag"
 When the user resets the board
 Then the remaining flags counter shows the value "10"
 
+@time-consuming
 Scenario: Resetting the board: resetting the timer
 Given the user loads the custom layout "oxo"
 And the user reveals the cell "1-1"
@@ -205,6 +206,7 @@ Given the user loads the custom layout "xo"
 When the user tags all cells with "a flag"
 Then the remaining flags counter shows the value "-1"
 
+@time-consuming
 Scenario: The timer counts time after first click
 Given the user loads the custom layout
 """
@@ -247,12 +249,13 @@ And the user reveals the cell "5-2"
 When the user presses the smiley
 Then the default board resets
 
+@time-consuming
 Scenario: Random generation: Default layout always has 10 mines
 Given the user loads the default layout with all cells visible "100" times
 When the user counts how many mines are there
 Then there is always "10" mines on the field
 
-@manual @probabilistic
+@probabilistic @time-consuming
 Scenario: Random generation: No cell has more mines than the others
 Given the user loads the default layout with all cells visible "500" times
 When the user counts the frequency of each cell having a mine

@@ -107,10 +107,3 @@ function getMineFreePosition(layout, height, width)
     } while(layout[row][column] == -1);
     return {"row":row, "column":column};
 }
-
-/*function getMineFreePosition(layout, height, width)
-{
-    for(let i = 0; i< height; i++) for(let j=0; j< width; j++)
-        if(layout[i][j] != -1)
-            return {"row":i, "column":j}
-}*/

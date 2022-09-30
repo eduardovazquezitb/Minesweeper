@@ -183,19 +183,17 @@ When('the user counts how many mines are there', async () => {
 });
 
 When('the user counts the frequency of each cell having a mine', async () => {
-    this.isBomb = [];
-    this.cellId = [];
-    for(let i =0 ; i<this.displays.length; i++)
-    {   
-        const regEx = new RegExp('-', "g");
-        let display = this.displays[i].replace(regEx,'');
-        for(let j=0; j< display.length; j++)
+    let sampleDisplaySplit = this.displays[0].split('-');
+    this.height = sampleDisplaySplit.length;
+    this.width = sampleDisplaySplit[0].length;
+    this.mineCount = Array(this.height).fill().map(() => Array(this.width).fill().map(()=> 0));
+    for(let k = 0; k < this.displays.length; k++)
+    {
+        let displaySplit = this.displays[k].split('-');
+        for(let i =0 ; i< this.height; i++) for(let j=0; j< this.width; j++)
         {
-            this.cellId.push(j);
-            if(display[j] == 'x')
-                this.isBomb.push(1.0);
-            else   
-                this.isBomb.push(0.0);
+            if(displaySplit[i][j] == 'x')
+                this.mineCount[i][j]++;
         }
     }
 });
@@ -302,10 +300,13 @@ Then('there is always {string} mines on the field', async (string) => {
 });
 
 Then('no significant differences are found', async () => {
-    let anova = anova1( this.isBomb, this.cellId );
-    let anovaSplit = anova.print().split('\n');
-    let lastLine = anovaSplit[anovaSplit.length-1];
-    let resultat = lastLine.substring(0,lastLine.indexOf(':'));
-
-    expect(anova).toBe('patata');
+    let normalStatistic = Array(this.height).fill(Array(this.width).fill(0));
+    let max = 0.0;
+    let numberOfTries = this.displays.length;
+    for(let i = 0; i < this.height; i++) for(let j=0; j < this.width; j++){
+        normalStatistic[i][j] = (this.mineCount[i][j]*64.0- numberOfTries*10.0)/Math.sqrt(numberOfTries*540.0);
+        if(Math.abs(normalStatistic[i][j]) > max)
+            max = Math.abs(normalStatistic[i][j]);
+    }
+    expect(max).toBeLessThan(3.3528); //Phi^-1(0.0004)
 });
