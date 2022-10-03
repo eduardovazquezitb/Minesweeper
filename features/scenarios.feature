@@ -1,8 +1,8 @@
 Feature: Minesweeper
 
-Explain that by using the URL parameter "mockup" a text box appears.
+Explain that by using the URL parameter "mockdata" a text box appears.
 
-Explain that the user can input a custom mock up layout in the box in the following styles.
+Explain that the user can input a custom mock data layout in the box in the following styles.
 
 Explain that by using the URL parameter "layout" a mock up layout can also be used.
 
@@ -257,6 +257,6 @@ Then there is always "10" mines on the field
 
 @probabilistic @time-consuming
 Scenario: Random generation: No cell has more mines than the others
-Given the user loads the default layout with all cells visible "500" times
+Given the user loads the default layout with all cells visible "200" times  
 When the user counts the frequency of each cell having a mine
 Then no significant differences are found

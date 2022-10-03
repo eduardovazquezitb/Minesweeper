@@ -5,14 +5,14 @@ function createPopUp(gameData)
     popup.setAttribute('id', 'popup');
 
     var paragraph = document.createElement('p');
-    paragraph.innerText = 'mockup data';
+    paragraph.innerText = 'mock data';
     
     var textarea = document.createElement('textarea');
     textarea.setAttribute('id','layout-data');
     textarea.setAttribute('rows', 7);
     
     var button = document.createElement('button');
-    button.setAttribute('id', 'mockup-button')
+    button.setAttribute('id', 'mockdata-button')
     button.innerText = 'submit layout';
     button.onclick = submitLayout.bind(button, gameData);
 

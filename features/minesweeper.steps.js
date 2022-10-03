@@ -88,9 +88,9 @@ Given('the user loads the custom layout {string}', async (string) => {
 });
 
 Given('the user loads the custom layout', async (docString) => {
-    await page.goto(url + '?mockup');
+    await page.goto(url + '?mockdata');
     await page.locator('id=layout-data').fill(docString);
-    await page.click('id=mockup-button');
+    await page.click('id=mockdata-button');
 });
 
 Given('the user wins the game', async () => {
@@ -300,7 +300,7 @@ Then('there is always {string} mines on the field', async (string) => {
 });
 
 Then('no significant differences are found', async () => {
-    let normalStatistic = Array(this.height).fill(Array(this.width).fill(0));
+    let normalStatistic = Array(this.height).fill().map(() => Array(this.width).fill().map(() => 0));
     let max = 0.0;
     let numberOfTries = this.displays.length;
     for(let i = 0; i < this.height; i++) for(let j=0; j < this.width; j++){
@@ -308,5 +308,6 @@ Then('no significant differences are found', async () => {
         if(Math.abs(normalStatistic[i][j]) > max)
             max = Math.abs(normalStatistic[i][j]);
     }
-    expect(max).toBeLessThan(3.3528); //Phi^-1(0.0004)
+    expect(max).toBeLessThan(3.3528); //3.3528 = Phi^-1(0.0008/2) for 5% of failing
+                                      //3.7798 = Phi^-1(0.000157/2) for 1% of failing
 });

@@ -1,6 +1,7 @@
 function getURLParameters()
 {
     var pageURL = window.location.search.substring(1);
+    console.log(pageURL);
     var URLVariables = pageURL.split('&');
     var parameters = {};
     for (var i = 0; i < URLVariables.length; i++) 
@@ -42,7 +43,7 @@ function loadURLParameters(URLParameters, gameData)
     if("visible" in URLParameters)
         gameData.cheating = true;
 
-    if("mockup" in URLParameters)
+    if("mockdata" in URLParameters)
         createPopUp(gameData); 
 
     return gameData;
